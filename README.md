@@ -1,7 +1,6 @@
-<<<<<<< HEAD
+
 # application-loading-status
-||||||| (empty tree)
-=======
+
 # LoadApp
 
 In this project students will create an app to download a file from Internet by clicking on a custom-built button where:
@@ -69,4 +68,3 @@ Include all items used to build project.
 
 ## License
 Please review the following [license agreement](https://bumptech.github.io/glide/dev/open-source-licenses.html)
->>>>>>> ff59717... initial project commit
