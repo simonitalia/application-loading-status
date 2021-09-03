@@ -62,17 +62,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun download(urlString: String) {
-        Log.i("MainActivity.download", "Download url: $urlString.")
 
          if (urlString.isNullOrEmpty()) {
-             val message = "Select a project to download"
+             val message = "Select a project to download."
              val duration = Snackbar.LENGTH_LONG
              Snackbar.make(custom_button, message, duration).show()
              return
          }
 
+        val fullUrlString = Constants.GH_BASE_URL+urlString
+        Log.i("MainActivity.download", "Downloading project from url: $fullUrlString.")
         val request =
-            DownloadManager.Request(Uri.parse(urlString))
+            DownloadManager.Request(Uri.parse(fullUrlString))
                 .setTitle(getString(R.string.app_name))
                 .setDescription(getString(R.string.app_description))
                 .setRequiresCharging(false)
