@@ -10,6 +10,7 @@ import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import com.google.android.material.snackbar.Snackbar
@@ -55,8 +56,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // on receiver to trigger notification
     private val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
+
+            val downloadCompletedText = context?.getText(R.string.download_completed)
+            Log.i("MainActivity.onReceive", "$downloadCompletedText.")
+            Toast.makeText(this@MainActivity, downloadCompletedText, Toast.LENGTH_SHORT).show()
+
+            // when download completes
             val id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
         }
     }
@@ -64,14 +72,14 @@ class MainActivity : AppCompatActivity() {
     private fun download(urlString: String) {
 
          if (urlString.isNullOrEmpty()) {
-             val message = "Select a project to download."
-             val duration = Snackbar.LENGTH_LONG
-             Snackbar.make(custom_button, message, duration).show()
+             val message = this.getText(R.string.select_radio)
+             Snackbar.make(custom_button, message, Snackbar.LENGTH_LONG).show()
              return
          }
 
         val fullUrlString = Constants.GH_BASE_URL+urlString
         Log.i("MainActivity.download", "Downloading project from url: $fullUrlString.")
+
         val request =
             DownloadManager.Request(Uri.parse(fullUrlString))
                 .setTitle(getString(R.string.app_name))

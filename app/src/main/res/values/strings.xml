@@ -18,4 +18,8 @@
     <string name="download_advanced_programming_repo">Download Android Advanced Programming Starter</string>
     <string name="download_retrofit_repo">Download Retrofit Project</string>
     <string name="download_image_description">Static Download Image</string>
+
+    <string name="select_radio">Select a project to download.</string>
+    <string name="download_completed">Project download completed.</string>
+
 </resources>
