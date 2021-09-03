@@ -1,4 +1,4 @@
-package com.udacity
+package com.udacity.ui.main
 
 import android.app.DownloadManager
 import android.app.NotificationManager
@@ -9,13 +9,19 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
+import com.google.android.material.snackbar.Snackbar
+import com.udacity.R
+import com.udacity.support.Constants
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
 
 class MainActivity : AppCompatActivity() {
+
+    private var urlString = ""
 
     private var downloadID: Long = 0
 
@@ -30,8 +36,22 @@ class MainActivity : AppCompatActivity() {
 
         registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
 
+        // set repo download url based on radio button tapped
+        radio_button_one.setOnClickListener {
+            urlString = Constants.GLIDE_REPO_URL
+        }
+
+        radio_button_two.setOnClickListener {
+            urlString = Constants.ADVANCED_PROGRAMMING_REPO_URL
+        }
+
+        radio_button_three.setOnClickListener {
+            urlString = Constants.RETROFIT_REPO_URL
+        }
+
+        // custom download button tapped
         custom_button.setOnClickListener {
-            download()
+            download(urlString)
         }
     }
 
@@ -41,9 +61,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun download() {
+    private fun download(urlString: String) {
+        Log.i("MainActivity.download", "Download url: $urlString.")
+
+         if (urlString.isNullOrEmpty()) {
+             val message = "Select a project to download"
+             val duration = Snackbar.LENGTH_LONG
+             Snackbar.make(custom_button, message, duration).show()
+             return
+         }
+
         val request =
-            DownloadManager.Request(Uri.parse(URL))
+            DownloadManager.Request(Uri.parse(urlString))
                 .setTitle(getString(R.string.app_name))
                 .setDescription(getString(R.string.app_description))
                 .setRequiresCharging(false)
