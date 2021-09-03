@@ -15,6 +15,7 @@
     <!-- Main Activity -->
     <!-- Radio Group -->
     <string name="download_glide_repo">Download Glide Project</string>
-    <string name="download_advanced_programming_repo">Download Advanced Android Programming Starter Project</string>
+    <string name="download_advanced_programming_repo">Download Android Advanced Programming Starter</string>
     <string name="download_retrofit_repo">Download Retrofit Project</string>
+    <string name="download_image_description">Static Download Image</string>
 </resources>
