@@ -56,12 +56,14 @@ object NotificationHelper {
 fun NotificationManager.sendNotification(
     notificationId: Int,
     messageBody: String,
+    projectUrlString: String,
     applicationContext: Context
 ) {
 
     // create the content intent for the notification
     // this launches Detail Activity
     val contentIntent = Intent(applicationContext, DetailActivity::class.java)
+    contentIntent.putExtra(DetailActivity.PROJECT_URL_STRING, projectUrlString)
 
     // create PendingIntent
     val contentPendingIntent = PendingIntent.getActivity(

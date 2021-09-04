@@ -10,7 +10,9 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.udacity.R
 
-class DownloadReceiver: BroadcastReceiver() {
+class DownloadReceiver(): BroadcastReceiver() {
+
+    var projectUrl = ""
 
     override fun onReceive(context: Context, intent: Intent?) {
 
@@ -35,6 +37,7 @@ class DownloadReceiver: BroadcastReceiver() {
             notificationManager.sendNotification(
                 it.toInt(),
                 downloadCompletedText.toString(),
+                projectUrl,
                 context
             )
         }

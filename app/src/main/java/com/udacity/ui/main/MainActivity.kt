@@ -23,10 +23,6 @@ class MainActivity : AppCompatActivity() {
     private var urlString = ""
     private var downloadID: Long = 0
 
-    private lateinit var notificationManager: NotificationManager
-    private lateinit var pendingIntent: PendingIntent
-    private lateinit var action: NotificationCompat.Action
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -56,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         // custom download button tapped
         custom_button.setOnClickListener {
             download(urlString)
+            receiver.projectUrl = urlString
         }
     }
 
