@@ -1,14 +1,11 @@
 package com.udacity.ui.main
 
 import android.app.DownloadManager
-import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
 import com.google.android.material.snackbar.Snackbar
 import com.udacity.R
 import com.udacity.notifications.DownloadReceiver

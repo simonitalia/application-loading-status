@@ -2,7 +2,6 @@ package com.udacity.ui.detail
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import com.udacity.R
 import com.udacity.support.Constants
 import kotlinx.android.synthetic.main.activity_detail.*
