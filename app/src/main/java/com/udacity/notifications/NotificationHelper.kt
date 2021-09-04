@@ -90,7 +90,12 @@ fun NotificationManager.sendNotification(
         .setContentIntent(contentPendingIntent)
         .setAutoCancel(true) // for the notification to dismiss itself once user taps and is taken to the app
 
-    // set notification button and action
+        // set notification button and action
+        .addAction(
+            R.drawable.file_download_24dp,
+            applicationContext.getString(R.string.notification_action_button),
+            contentPendingIntent //trigger pending intent
+        )
 
 
     // call notify on Notification Compat builder
