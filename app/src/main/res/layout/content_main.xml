@@ -20,6 +20,7 @@
         android:layout_margin="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Download"/>
+        android:textColor="@color/white"
+        tools:text="Start Download"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
