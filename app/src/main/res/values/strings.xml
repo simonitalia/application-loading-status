@@ -3,11 +3,6 @@
     <string name="app_description">Download files from Internet</string>
     <string name="action_settings">Settings</string>
 
-
-    <string name="notification_title">Udacity: Android Kotlin Nanodegree </string>
-    <string name="notification_description">The Project 3 repository is downloaded</string>
-    <string name="notification_button">See changes</string>
-
     <string name="button_name">Click me</string>
     <string name="button_loading">We are loading </string>
     <string name="title_activity_detail">DetailActivity</string>
@@ -19,7 +14,11 @@
     <string name="download_retrofit_repo">Download Retrofit Project</string>
     <string name="download_image_description">Static Download Image</string>
 
-    <string name="select_radio">Select a project to download.</string>
-    <string name="download_completed">Project download completed.</string>
+    <string name="select_radio">Select a project to download</string>
+
+    <!-- Notification -->
+    <string name="notification_title">Download Status...</string>
+    <string name="notification_message">Project has finished downloading from github.</string>
+    <string name="notification_button">See Status</string>
 
 </resources>

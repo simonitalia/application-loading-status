@@ -3,18 +3,16 @@ package com.udacity.ui.main
 import android.app.DownloadManager
 import android.app.NotificationManager
 import android.app.PendingIntent
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import com.google.android.material.snackbar.Snackbar
 import com.udacity.R
+import com.udacity.notifications.DownloadReceiver
+import com.udacity.notifications.NotificationHelper
 import com.udacity.support.Constants
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -23,7 +21,6 @@ import kotlinx.android.synthetic.main.content_main.*
 class MainActivity : AppCompatActivity() {
 
     private var urlString = ""
-
     private var downloadID: Long = 0
 
     private lateinit var notificationManager: NotificationManager
@@ -35,6 +32,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        // create notification channel
+        NotificationHelper.createChannel(applicationContext, Constants.CHANNEL_ID, Constants.CHANNEL_NOTIFICATION_NAME)
+
+        // on receiver to trigger notification
+        //register notification receiver
+        val receiver = DownloadReceiver()
         registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
 
         // set repo download url based on radio button tapped
@@ -56,19 +59,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // on receiver to trigger notification
-    private val receiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-
-            val downloadCompletedText = context?.getText(R.string.download_completed)
-            Log.i("MainActivity.onReceive", "$downloadCompletedText.")
-            Toast.makeText(this@MainActivity, downloadCompletedText, Toast.LENGTH_SHORT).show()
-
-            // when download completes
-            val id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
-        }
-    }
-
+    //project download manager
     private fun download(urlString: String) {
 
          if (urlString.isNullOrEmpty()) {
@@ -92,11 +83,4 @@ class MainActivity : AppCompatActivity() {
         downloadID =
             downloadManager.enqueue(request)// enqueue puts the download request in the queue.
     }
-
-    companion object {
-        private const val URL =
-            "https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter/archive/master.zip"
-        private const val CHANNEL_ID = "channelId"
-    }
-
 }

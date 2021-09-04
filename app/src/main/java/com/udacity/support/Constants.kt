@@ -7,4 +7,5 @@ object Constants {
     const val ADVANCED_PROGRAMMING_REPO_URL = "udacity/nd940-c3-advanced-android-programming-project-starter/archive/master.zip"
     const val RETROFIT_REPO_URL = "square/retrofit/archive/refs/heads/master.zip"
     const val CHANNEL_ID = "channelId"
+    const val CHANNEL_NOTIFICATION_NAME = "download"
 }
