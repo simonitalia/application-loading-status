@@ -10,17 +10,19 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.udacity.R
 
-class DownloadReceiver(): BroadcastReceiver() {
+class DownloadReceiver: BroadcastReceiver() {
 
     var projectUrl = ""
 
     override fun onReceive(context: Context, intent: Intent?) {
 
         // when download completes
-        val id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
+
+        // get downloadId (set with download request in MainActivity)
+        val downloadId = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
 
         val downloadCompletedText = context.getText(R.string.notification_message)
-        Log.i("MainActivity.onReceive", "$downloadCompletedText.")
+        Log.i("MainActivity.onReceive", "...$downloadCompletedText.")
 
         Toast.makeText(context, downloadCompletedText, Toast.LENGTH_SHORT).show()
 
@@ -33,13 +35,11 @@ class DownloadReceiver(): BroadcastReceiver() {
         // cancel all existing notifications
         notificationManager.cancelNotifications()
 
-        id?.let {
-            notificationManager.sendNotification(
-                it.toInt(),
-                downloadCompletedText.toString(),
-                projectUrl,
-                context
-            )
-        }
+        notificationManager.sendNotification(
+            downloadId,
+            downloadCompletedText.toString(),
+            projectUrl,
+            context
+        )
     }
 }

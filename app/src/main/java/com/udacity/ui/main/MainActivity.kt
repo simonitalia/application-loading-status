@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         NotificationHelper.createChannel(applicationContext, Constants.CHANNEL_ID, Constants.CHANNEL_NOTIFICATION_NAME)
 
         // on receiver to trigger notification
-        //register notification receiver
+        // register notification receiver
         val receiver = DownloadReceiver()
         registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
 
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
          }
 
         val fullUrlString = Constants.GH_BASE_URL+urlString
-        Log.i("MainActivity.download", "Downloading project from url: $fullUrlString.")
+        Log.i("MainActivity.download", "Downloading project from url: $fullUrlString. Please wait...")
 
         val request =
             DownloadManager.Request(Uri.parse(fullUrlString))

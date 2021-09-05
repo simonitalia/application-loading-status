@@ -53,8 +53,10 @@ object NotificationHelper {
  * @param context, activity context.
  */
 
+private val NOTIFICATION_ID = 0
+
 fun NotificationManager.sendNotification(
-    notificationId: Int,
+    downloadId: Long?,
     messageBody: String,
     projectUrlString: String,
     applicationContext: Context
@@ -68,7 +70,7 @@ fun NotificationManager.sendNotification(
     // create PendingIntent
     val contentPendingIntent = PendingIntent.getActivity(
         applicationContext,
-        notificationId,
+        NOTIFICATION_ID,
         contentIntent,
         PendingIntent.FLAG_UPDATE_CURRENT // create a new intent or use an existing intent (in this case use existing)
     )
@@ -101,7 +103,7 @@ fun NotificationManager.sendNotification(
 
 
     // call notify on Notification Compat builder
-    notify(notificationId, builder.build())
+    notify(NOTIFICATION_ID, builder.build())
 }
 
 /**
