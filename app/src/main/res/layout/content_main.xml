@@ -61,13 +61,12 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="48dp"
+        android:layout_margin="56dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:buttonColorPrimary="#07C2AA"
-        app:buttonColorPrimaryDark="#004349"
-        app:buttonTextColor="#FFFFFF"
-        tools:text="Start Download" />
+        app:buttonColorPrimary="@color/primary_green"
+        app:buttonColorPrimaryDark="@color/primary_dark_green"
+        app:buttonTextColor="@color/white"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
