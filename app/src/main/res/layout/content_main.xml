@@ -10,17 +10,64 @@
     tools:context=".ui.main.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginEnd="@dimen/margin_16dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:contentDescription="@string/download_image_description"
+            app:srcCompat="@drawable/file_download_24dp" />
+
+        <RadioGroup
+            android:id="@+id/download_file_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16dp">
+
+            <RadioButton
+                android:id="@+id/radio_button_one"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height_48dp"
+                android:padding="@dimen/padding_8dp"
+                android:text="@string/download_glide_repo" />
+
+            <RadioButton
+                android:id="@+id/radio_button_two"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height_48dp"
+                android:padding="@dimen/padding_8dp"
+                android:text="@string/download_advanced_programming_repo" />
+
+            <RadioButton
+                android:id="@+id/radio_button_three"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height_48dp"
+                android:layout_marginBottom="@dimen/margin_24dp"
+                android:padding="@dimen/padding_8dp"
+                android:text="@string/download_retrofit_repo" />
+        </RadioGroup>
+
+    </LinearLayout>
+
     <com.udacity.LoadingButton
         android:id="@+id/custom_loading_button"
-        android:layout_width="0dp"
-        android:background="@color/colorPrimaryDark"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_margin="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="48dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/white"
-        tools:text="Start Download"/>
+        app:buttonColorPrimary="#07C2AA"
+        app:buttonColorPrimaryDark="#004349"
+        app:buttonTextColor="#FFFFFF"
+        tools:text="Start Download" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

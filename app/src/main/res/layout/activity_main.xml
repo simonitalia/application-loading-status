@@ -8,73 +8,28 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-        </com.google.android.material.appbar.AppBarLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_16dp"
-            android:layout_marginEnd="@dimen/margin_16dp"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/app_bar_container">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:contentDescription="@string/download_image_description"
-                app:srcCompat="@drawable/file_download_24dp" />
-
-            <RadioGroup
-                android:id="@+id/download_file_radio_group"
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_16dp">
+                android:theme="@style/AppTheme.AppBarOverlay">
 
-                <RadioButton
-                    android:id="@+id/radio_button_one"
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/button_height_48dp"
-                    android:padding="@dimen/padding_8dp"
-                    android:text="@string/download_glide_repo" />
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/colorPrimary"
+                    app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-                <RadioButton
-                    android:id="@+id/radio_button_two"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/button_height_48dp"
-                    android:padding="@dimen/padding_8dp"
-                    android:text="@string/download_advanced_programming_repo" />
+            </com.google.android.material.appbar.AppBarLayout>
 
-                <RadioButton
-                    android:id="@+id/radio_button_three"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/button_height_48dp"
-                    android:layout_marginBottom="@dimen/margin_24dp"
-                    android:padding="@dimen/padding_8dp"
-                    android:text="@string/download_retrofit_repo" />
-            </RadioGroup>
+            <include layout="@layout/content_main" />
 
-            <include
-                layout="@layout/content_main"/>
         </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
