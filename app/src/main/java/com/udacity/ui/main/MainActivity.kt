@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // custom download button tapped
-        custom_button.setOnClickListener {
+        custom_loading_button.setOnClickListener {
             download(urlString)
             receiver.projectUrl = urlString
         }
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
 
          if (urlString.isNullOrEmpty()) {
              val message = this.getText(R.string.select_radio)
-             Snackbar.make(custom_button, message, Snackbar.LENGTH_LONG).show()
+             Snackbar.make(custom_loading_button, message, Snackbar.LENGTH_LONG).show()
              return
          }
 

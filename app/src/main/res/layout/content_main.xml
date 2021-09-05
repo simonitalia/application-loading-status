@@ -11,7 +11,7 @@
     tools:showIn="@layout/activity_main">
 
     <com.udacity.LoadingButton
-        android:id="@+id/custom_button"
+        android:id="@+id/custom_loading_button"
         android:layout_width="0dp"
         android:background="@color/colorPrimaryDark"
         app:layout_constraintStart_toStartOf="parent"
