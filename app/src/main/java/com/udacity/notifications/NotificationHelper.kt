@@ -101,7 +101,6 @@ fun NotificationManager.sendNotification(
             contentPendingIntent //trigger pending intent
         )
 
-
     // call notify on Notification Compat builder
     notify(NOTIFICATION_ID, builder.build())
 }
