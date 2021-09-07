@@ -64,6 +64,7 @@
         android:layout_marginBottom="64dp"
         android:layout_marginStart="@dimen/margin_24dp"
         android:layout_marginEnd="@dimen/margin_24dp"
+        app:backgroundColor="@color/primary_green"
         android:contentDescription="Download Button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
