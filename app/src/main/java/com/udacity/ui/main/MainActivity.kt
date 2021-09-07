@@ -1,12 +1,16 @@
 package com.udacity.ui.main
 
 import android.app.DownloadManager
+import android.content.Context
+import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
+import com.udacity.LoadingButton
 import com.udacity.R
 import com.udacity.notifications.DownloadReceiver
 import com.udacity.notifications.NotificationHelper
@@ -28,9 +32,16 @@ class MainActivity : AppCompatActivity() {
         // create notification channel
         NotificationHelper.createChannel(applicationContext, Constants.CHANNEL_ID, Constants.CHANNEL_NOTIFICATION_NAME)
 
-        // on receiver to trigger notification
-        // register notification receiver
-        val receiver = DownloadReceiver()
+        // receiver to trigger notification
+        val receiver = object: DownloadReceiver() {
+            override fun onReceive(context: Context, intent: Intent?) {
+                super.onReceive(context, intent)
+                custom_loading_button.buttonState = LoadingButton.ButtonState.NORMAL
+                Toast.makeText(context, context.getString(R.string.notification_message), Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // register receiver
         registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
 
         // set repo download url based on radio button tapped
@@ -61,6 +72,9 @@ class MainActivity : AppCompatActivity() {
              Snackbar.make(custom_loading_button, message, Snackbar.LENGTH_LONG).show()
              return
          }
+
+        // update custom loading button state
+        custom_loading_button.buttonState = LoadingButton.ButtonState.DOWNLOADING
 
         val fullUrlString = Constants.GH_BASE_URL+urlString
         Log.i("MainActivity.download", "Downloading project from url: $fullUrlString. Please wait...")

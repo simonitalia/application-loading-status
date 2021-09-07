@@ -6,11 +6,10 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.udacity.R
 
-class DownloadReceiver: BroadcastReceiver() {
+open class DownloadReceiver: BroadcastReceiver() {
 
     var projectUrl = ""
 
@@ -22,9 +21,7 @@ class DownloadReceiver: BroadcastReceiver() {
         val downloadId = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
 
         val downloadCompletedText = context.getText(R.string.notification_message)
-        Log.i("MainActivity.onReceive", "...$downloadCompletedText.")
-
-        Toast.makeText(context, downloadCompletedText, Toast.LENGTH_SHORT).show()
+        Log.i("DownloadReceiver.onReceive", "$downloadCompletedText")
 
         // deliver notification to system
         val notificationManager = ContextCompat.getSystemService(
