@@ -127,8 +127,8 @@ class LoadingButton @JvmOverloads constructor(
         downloadingProgressRect.set(
             0f,
             0f,
-            0f + percentageToFill,
-            0f + viewHeight
+            percentageToFill,
+            viewHeight.toFloat()
         )
 
         canvas?.drawRect(downloadingProgressRect, paint)
