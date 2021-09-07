@@ -12,8 +12,8 @@ import com.udacity.R
 open class DownloadReceiver: BroadcastReceiver() {
 
     var projectUrl = ""
-    private var isDownloadSuccessful = false
     var downloadManager: DownloadManager? = null
+    private var isDownloadSuccessful = false
 
     override fun onReceive(context: Context, intent: Intent?) {
 
