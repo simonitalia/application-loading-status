@@ -57,7 +57,7 @@ object NotificationHelper {
 private val NOTIFICATION_ID = 0
 
 fun NotificationManager.sendNotification(
-    downloadId: Long?,
+    downloadId: Long?, //for future use
     isDownloadSuccessful: Boolean,
     messageBody: String,
     projectUrlString: String,
