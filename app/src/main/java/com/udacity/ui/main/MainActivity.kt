@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity() {
     private var urlString = ""
     private var downloadID: Long = 0
 
+    private lateinit var receiver: DownloadReceiver
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -33,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         NotificationHelper.createChannel(applicationContext, Constants.CHANNEL_ID, Constants.CHANNEL_NOTIFICATION_NAME)
 
         // receiver to trigger notification
-        val receiver = object: DownloadReceiver() {
+        receiver = object: DownloadReceiver() {
             override fun onReceive(context: Context, intent: Intent?) {
                 super.onReceive(context, intent)
                 custom_loading_button.buttonState = LoadingButton.ButtonState.NORMAL
@@ -88,6 +90,7 @@ class MainActivity : AppCompatActivity() {
                 .setAllowedOverRoaming(true)
 
         val downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
+        receiver.downloadManager = downloadManager
         downloadID =
             downloadManager.enqueue(request)// enqueue puts the download request in the queue.
     }

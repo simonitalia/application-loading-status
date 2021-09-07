@@ -12,6 +12,7 @@ class DetailActivity: AppCompatActivity() {
     // key for passing downloaded project url string via intent
     companion object {
         const val PROJECT_URL_STRING = "PROJECT_URL_STRING"
+        const val PROJECT_DOWNLOAD_SUCCESS_FLAG = "PROJECT_DOWNLOAD_SUCCESS_FLAG"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +21,7 @@ class DetailActivity: AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val projectUrl = intent.getStringExtra(PROJECT_URL_STRING)
+        val downloadSuccessful = intent.getBooleanExtra(PROJECT_DOWNLOAD_SUCCESS_FLAG, false)
 
         project_name_text_view.text = (when (projectUrl) {
 
@@ -39,6 +41,11 @@ class DetailActivity: AppCompatActivity() {
                 "UNKNOWN_PROJECT"
             }
         })
+
+        download_status_text_view.text = when (downloadSuccessful) {
+            true -> getString(R.string.download_success_message)
+            false -> getString(R.string.download_failed_message)
+        }
 
         ok_button.setOnClickListener {
             onBackPressed()

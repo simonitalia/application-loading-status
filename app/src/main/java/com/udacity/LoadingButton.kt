@@ -20,7 +20,7 @@ class LoadingButton @JvmOverloads constructor(
 
     companion object {
         const val PERCENTAGE_DIVIDER = 100.0
-        const val PERCENTAGE_VALUE_HOLDER = "percentage"
+        const val PERCENTAGE_VALUE_HOLDER = "PERCENTAGE"
     }
 
     private var currentPercentage = 0
@@ -134,7 +134,7 @@ class LoadingButton @JvmOverloads constructor(
     }
 
     private fun animateProgress() {
-        val valuesHolder = PropertyValuesHolder.ofFloat("percentage", 0f, 100f)
+        val valuesHolder = PropertyValuesHolder.ofFloat("PERCENTAGE", 0f, 100f)
         val animator = ValueAnimator().apply {
             setValues(valuesHolder)
             duration = 1000

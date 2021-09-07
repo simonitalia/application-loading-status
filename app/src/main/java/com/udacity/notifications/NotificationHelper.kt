@@ -11,6 +11,7 @@ import androidx.core.app.NotificationCompat
 import com.udacity.R
 import com.udacity.support.Constants
 import com.udacity.ui.detail.DetailActivity
+import com.udacity.ui.detail.DetailActivity.Companion.PROJECT_DOWNLOAD_SUCCESS_FLAG
 
 object NotificationHelper {
 
@@ -57,6 +58,7 @@ private val NOTIFICATION_ID = 0
 
 fun NotificationManager.sendNotification(
     downloadId: Long?,
+    isDownloadSuccessful: Boolean,
     messageBody: String,
     projectUrlString: String,
     applicationContext: Context
@@ -66,6 +68,7 @@ fun NotificationManager.sendNotification(
     // this launches Detail Activity
     val contentIntent = Intent(applicationContext, DetailActivity::class.java)
     contentIntent.putExtra(DetailActivity.PROJECT_URL_STRING, projectUrlString)
+    contentIntent.putExtra(PROJECT_DOWNLOAD_SUCCESS_FLAG, isDownloadSuccessful)
 
     // create PendingIntent
     val contentPendingIntent = PendingIntent.getActivity(

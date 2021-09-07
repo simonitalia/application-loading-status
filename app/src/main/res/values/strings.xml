@@ -16,9 +16,14 @@
 
     <string name="select_radio">Select a project to download</string>
 
-    <!-- Notification -->
-    <string name="notification_title">Download Status...</string>
-    <string name="notification_message">Project has finished downloading from github.</string>
-    <string name="notification_action_button">Tap for Status</string>
+    <!-- Notification strings -->
+    <string name="notification_title">Download status</string>
+    <string name="notification_message">Download request has completed</string>
+    <string name="notification_action_button">Tap for status</string>
+
+    <!-- Project download message strings -->
+    <string name="download_success_message">Successful</string>
+    <string name="download_failed_message">Failed</string>
+    <string name="download_error_message">Error</string>
 
 </resources>
