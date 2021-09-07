@@ -91,7 +91,8 @@ class MainActivity : AppCompatActivity() {
 
         val downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
         receiver.downloadManager = downloadManager
-        downloadID =
-            downloadManager.enqueue(request)// enqueue puts the download request in the queue.
+        val id = downloadManager.enqueue(request)// enqueue puts the download request in the queue.
+        downloadID = id
+
     }
 }
