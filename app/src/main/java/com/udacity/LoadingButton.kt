@@ -1,9 +1,9 @@
 package com.udacity
 
-import android.animation.PropertyValuesHolder
-import android.animation.ValueAnimator
+import android.animation.*
 import android.content.Context
 import android.graphics.*
+import android.graphics.drawable.shapes.OvalShape
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
@@ -19,27 +19,27 @@ class LoadingButton @JvmOverloads constructor(
 ): View(context, attrs, defStyleAttr) {
 
     companion object {
+        const val ARC_FULL_ROTATION_DEGREE = 360
         const val PERCENTAGE_DIVIDER = 100.0
         const val PERCENTAGE_VALUE_HOLDER = "PERCENTAGE"
     }
 
-    private var currentPercentage = 0
+    private var currentRectPercentage = 0
+    private var currentArcPercentage = 0
 
     enum class ButtonState(val text: Int) {
         NORMAL(text = R.string.button_normal_text),
         DOWNLOADING(text = R.string.button_downloading_text)
     }
 
-    private val animator = ValueAnimator.ofFloat(0f, -100f)
     private var isDownloading = false
 
     // Button State observable
     var buttonState: ButtonState by Delegates.observable(ButtonState.NORMAL) { _, _, _ ->
-        isClickable = buttonState != ButtonState.DOWNLOADING
-        isDownloading = buttonState == ButtonState.DOWNLOADING
 
         if (buttonState == ButtonState.DOWNLOADING){
-            animateProgress()
+            animateProgressBar()
+            animateProgressCircle()
         }
 
         invalidate() //force redraw of view
@@ -53,11 +53,12 @@ class LoadingButton @JvmOverloads constructor(
     private var viewWidth = 0
     private var viewHeight = 0
 
-    // button container object
-    private val viewContainer = RectF()
+    // graphic objects
+    private val startDownloadRect = RectF()
+    private var downloadingProgressRect = RectF()
+    private val downloadingProgressArc = RectF()
 
-    private var downloadingRect = RectF()
-
+    private val animationDuration = 1000L
 
     init {
         context.withStyledAttributes(attrs, R.styleable.LoadingButton) {
@@ -70,7 +71,10 @@ class LoadingButton @JvmOverloads constructor(
         super.onDraw(canvas)
 
         drawNormalStateView(canvas)
-        if (buttonState == ButtonState.DOWNLOADING) { drawDownloadingStateView(canvas) }
+        if (buttonState == ButtonState.DOWNLOADING) {
+            drawDownloadingStateView(canvas)
+            drawProgressCircle(canvas)
+        }
 
         drawViewText(canvas)
     }
@@ -90,7 +94,7 @@ class LoadingButton @JvmOverloads constructor(
         setMeasuredDimension(w, h)
 
         //set viewContainer space
-        viewContainer.set(
+        startDownloadRect.set(
             x,
             y,
             x + w,
@@ -107,13 +111,10 @@ class LoadingButton @JvmOverloads constructor(
             color = context.getColor(R.color.primary_green)
         }
 
-        canvas?.drawRect(viewContainer, viewContainerPaint)
+        canvas?.drawRect(startDownloadRect, viewContainerPaint)
     }
 
     private fun drawDownloadingStateView(canvas: Canvas?) {
-
-        fun getCurrentPercentageToFill() =
-            (viewWidth * (currentPercentage / PERCENTAGE_DIVIDER)).toFloat()
 
         val paint = Paint().apply {
             style = Paint.Style.FILL
@@ -121,28 +122,41 @@ class LoadingButton @JvmOverloads constructor(
             color = context.getColor(R.color.primary_dark_green)
         }
 
-        val percentageToFill = getCurrentPercentageToFill()
+        val percentageToFill =  (viewWidth * (currentRectPercentage / PERCENTAGE_DIVIDER)).toFloat()
 
-        downloadingRect.set(
+        downloadingProgressRect.set(
             0f,
             0f,
             0f + percentageToFill,
-            0f + (viewHeight)
+            0f + viewHeight
         )
 
-        canvas?.drawRect(downloadingRect, paint)
+        canvas?.drawRect(downloadingProgressRect, paint)
     }
 
-    private fun animateProgress() {
+    private fun animateProgressBar() {
         val valuesHolder = PropertyValuesHolder.ofFloat("PERCENTAGE", 0f, 100f)
         val animator = ValueAnimator().apply {
             setValues(valuesHolder)
-            duration = 1000
+            duration = animationDuration
             addUpdateListener {
                 val percentage = it.getAnimatedValue(PERCENTAGE_VALUE_HOLDER) as Float
-                currentPercentage = percentage.toInt()
+                currentRectPercentage = percentage.toInt()
                 invalidate()
             }
+
+            addListener(object : AnimatorListenerAdapter() {
+
+                override fun onAnimationStart(animation: Animator?) {
+                    isDownloading = true
+                    isClickable = false
+                }
+
+                override fun onAnimationEnd(animation: Animator?) {
+                    isDownloading = false
+                    isClickable = true
+                }
+            })
         }
 
        animator.start()
@@ -172,5 +186,48 @@ class LoadingButton @JvmOverloads constructor(
         }
 
         canvas?.drawText(buttonText, viewCenterX, textPositionY, paintText)
+    }
+
+    private fun drawProgressCircle(canvas: Canvas?) {
+
+        val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            style = Paint.Style.FILL
+            color = context.getColor(R.color.orange)
+        }
+
+        val centerX = (viewWidth / 1.2).toFloat()
+        val centerY = (viewHeight / 2).toFloat()
+        val ovalSize: Float = (viewHeight * 0.25).toFloat()
+
+        downloadingProgressArc.set(
+            centerX - ovalSize, // top
+            centerY - ovalSize, // left
+            centerX + ovalSize, // right
+            centerY + ovalSize // bottom
+        )
+
+        val percentageToFill = (ARC_FULL_ROTATION_DEGREE * (currentArcPercentage / PERCENTAGE_DIVIDER)).toFloat()
+
+        canvas?.drawArc(downloadingProgressArc, 270f, percentageToFill, false, paint)
+    }
+
+    private fun animateProgressCircle() {
+        val valuesHolder = PropertyValuesHolder.ofFloat("PERCENTAGE", 0f, 100f)
+        val animator = ValueAnimator().apply {
+            setValues(valuesHolder)
+            duration = animationDuration
+            addUpdateListener {
+                val percentage = it.getAnimatedValue(PERCENTAGE_VALUE_HOLDER) as Float
+                currentArcPercentage = percentage.toInt()
+                invalidate()
+            }
+
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationStart(animation: Animator?) {}
+                override fun onAnimationEnd(animation: Animator?) {}
+            })
+        }
+
+        animator.start()
     }
 }
