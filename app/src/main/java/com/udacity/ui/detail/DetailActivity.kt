@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.content_detail.*
 
 class DetailActivity: AppCompatActivity() {
 
-    // key for passing downloaded project url string via intent
+    // keys for passing values via intent
     companion object {
         const val PROJECT_URL_STRING = "PROJECT_URL_STRING"
         const val PROJECT_DOWNLOAD_SUCCESS_FLAG = "PROJECT_DOWNLOAD_SUCCESS_FLAG"
@@ -26,19 +26,19 @@ class DetailActivity: AppCompatActivity() {
         project_name_text_view.text = (when (projectUrl) {
 
             Constants.GLIDE_REPO_URL -> {
-                "Glide Project"
+                getString(R.string.glide_project_name)
             }
 
             Constants.ADVANCED_PROGRAMMING_REPO_URL -> {
-                "Android Advanced Programming Project"
+                getString(R.string.android_advanced_programming_project_name)
             }
 
             Constants.RETROFIT_REPO_URL -> {
-                "Retrofit Project"
+                getString(R.string.retrofit_project_name)
             }
 
             else -> {
-                "UNKNOWN_PROJECT"
+                getString(R.string.unknown_project_name)
             }
         })
 

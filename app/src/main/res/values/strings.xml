@@ -26,4 +26,10 @@
     <string name="download_failed_message">Failed</string>
     <string name="download_error_message">Error</string>
 
+    <!-- Project Repo Display Name -->
+    <string name="glide_project_name">Glide Project</string>
+    <string name="android_advanced_programming_project_name">Android Advanced Programming Project</string>
+    <string name="retrofit_project_name">Retrofit Project</string>
+    <string name="unknown_project_name">UNKNOWN_PROJECT</string>
+
 </resources>
