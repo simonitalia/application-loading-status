@@ -31,5 +31,9 @@
     <string name="android_advanced_programming_project_name">Android Advanced Programming Project</string>
     <string name="retrofit_project_name">Retrofit Project</string>
     <string name="unknown_project_name">UNKNOWN_PROJECT</string>
+    <string name="download_project_button_description">Download Project Button</string>
+    <string name="project_name_label">Project Name:</string>
+    <string name="project_download_status_label">Download Status:</string>
+    <string name="ok_button_text">OK</string>
 
 </resources>
