@@ -3,14 +3,14 @@
 
 ## About
 
-This app project downloads a selected git project repository from GutHub.com, using a custom-built button view where:
- - the download button is a custom view,downlaodoverlayedoverlayed
+This app project downloads a selected git project repository from GitHub.com, using a custom-built button view where:
+ - the download button is a custom view,
  - all states of the custom button view are drawn using onDraw(),
  - whilst project download is in progress, the width of the button is animated from left to right to indicate download progress,
  - button text is changed based on different states of the button,
  - a download progress circle is also overlayed on the button, which animates from 0 to 360 degrees during the notificationn,
  - once download completes, a notification is sent,
- - the user can then interact with the notification itself or via an action button built into the notification, to launch the app (if not in the foreground),
+ - the user can then interact with the notification itself or via an action button built into the notification to launch the app (if not in the foreground),
  - when the app launches, the detail activity screen is displayed and the notification is dismissed,
  - on the detail activity screen, the status of the download is displayed. The OK button is also automatically animated via MotionLayout when the activity starts.
 
