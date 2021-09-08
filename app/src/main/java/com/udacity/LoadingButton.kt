@@ -3,7 +3,6 @@ package com.udacity
 import android.animation.*
 import android.content.Context
 import android.graphics.*
-import android.graphics.drawable.shapes.OvalShape
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
