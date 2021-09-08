@@ -6,4 +6,10 @@
     <dimen name="padding_8dp">8dp</dimen>
     <dimen name="margin_24dp">24dp</dimen>
     <dimen name="button_height_48dp">48dp</dimen>
+    <dimen name="margin_64dp">64dp</dimen>
+    <dimen name="view_height_60dp">60dp</dimen>
+    <dimen name="view_width_125dp">125dp</dimen>
+    <dimen name="margin_48dp">48dp</dimen>
+    <dimen name="view_width_0dp">0dp</dimen>
+    <dimen name="view_height_200dp">200dp</dimen>
 </resources>

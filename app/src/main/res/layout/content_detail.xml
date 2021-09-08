@@ -24,13 +24,13 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="125dp"
+                android:layout_width="@dimen/view_width_125dp"
                 android:layout_height="wrap_content"
                 android:text="@string/project_name_label" />
 
             <TextView
                 android:id="@+id/project_name_text_view"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/view_width_0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 tools:text="Project Name" />
@@ -43,13 +43,13 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="125dp"
+                android:layout_width="@dimen/view_width_125dp"
                 android:layout_height="wrap_content"
                 android:text="@string/project_download_status_label" />
 
             <TextView
                 android:id="@+id/download_status_text_view"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/view_width_0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 tools:text="Success" />
@@ -59,7 +59,7 @@
             android:id="@+id/ok_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="48dp"
+            android:layout_margin="@dimen/margin_48dp"
             android:background="@color/orange"
             android:text="@string/ok_button_text"
             android:textColor="@color/white"

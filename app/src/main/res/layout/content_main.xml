@@ -21,7 +21,7 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="@dimen/view_height_200dp"
             android:contentDescription="@string/download_image_description"
             app:srcCompat="@drawable/file_download_24dp" />
 
@@ -59,12 +59,13 @@
     <com.udacity.LoadingButton
         android:id="@+id/custom_loading_button"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/view_height_60dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="@dimen/margin_24dp"
-        android:layout_marginBottom="64dp"
-        android:contentDescription="@string/download_project_button_description"
+        android:layout_marginEnd="@dimen/margin_24dp"
+        android:layout_marginBottom="@dimen/margin_64dp"
         app:backgroundColor="@color/primary_green"
+        android:contentDescription="@string/download_project_button_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
